@@ -41,3 +41,24 @@ UPDATE actor SET first_name = 'GROUCHO' WHERE first_name = 'HARPO' AND last_name
 SELECT * FROM actor WHERE last_name = 'WILLIAMS';
 
 #5a
+SHOW CREATE TABLE sakila.address;
+
+#6a
+SELECT first_name, last_name, address FROM staff s JOIN address a ON s.address_id = a.address_id;
+
+#6b
+SELECT first_name, last_name, SUM(amount) FROM staff s JOIN payment p ON s.staff_id = p.staff_id WHERE p.payment_date LIKE '2005-08%' GROUP BY p.staff_id;
+
+#6c
+SELECT title, COUNT(actor_id) FROM film f INNER JOIN film_actor fa ON f.film_id = fa.film_id GROUP BY title;
+
+#6d
+SELECT title, COUNT(inventory_id) FROM film f INNER JOIN inventory i ON f.film_id = i.film_id WHERE title = 'Hunchback Impossible';
+
+#6e
+SELECT first_name, last_name, SUM(amount) AS 'total amount paid' FROM customer c INNER JOIN payment p ON c.customer_id = p.customer_id GROUP BY p.customer_id ORDER BY last_name ASC;
+
+
+
+
+
